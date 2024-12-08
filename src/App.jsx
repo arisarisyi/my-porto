@@ -8,6 +8,7 @@ import { useLight } from "./context/LightContext"
 
 import { useEffect, useState } from "react"
 import { spiral } from "ldrs"
+import { Certifications } from "./components/Certifications"
 
 const App = () => {
   spiral.register()
@@ -46,6 +47,7 @@ const App = () => {
         <Technologies />
         <Projects />
         <Experience />
+        <Certifications />
         <Contact />
       </div>
     </div>
