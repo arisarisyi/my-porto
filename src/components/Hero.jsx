@@ -1,4 +1,4 @@
-import foto from "../assets/1.jpeg"
+import foto from "../assets/1.webp"
 import { HERO_CONTENT } from "../constants"
 import { motion } from "framer-motion"
 

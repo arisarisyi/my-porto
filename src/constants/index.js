@@ -1,7 +1,7 @@
-import project1 from "../assets/projects/logistic.png"
-import project2 from "../assets/projects/fuel.png"
-import project4 from "../assets/projects/3care.png"
-import cSharp from "../assets/csharp.png"
+import project1 from "../assets/projects/logistic.webp"
+import project2 from "../assets/projects/fuel.webp"
+import project4 from "../assets/projects/3care.webp"
+import cSharp from "../assets/csharp.webp"
 
 export const HERO_CONTENT = `A versatile software developer with over 2 years of experience in both startups and the mining industry. Skilled in frontend and backend development, with a Bachelor's degree in Informatics.
 Engineering from Hasyim Asy'ari Tebuireng University. Open-minded and adaptable, I excel in both individual and team environments. A quick learner with a strong commitment to continuous personal and professional growth.`
