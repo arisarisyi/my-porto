@@ -34,6 +34,7 @@ export const Certifications = () => {
                   src={certification.image}
                   alt={index}
                   className="mb-6 rounded"
+                  loading="lazy"
                 />
               </motion.div>
             </motion.div>

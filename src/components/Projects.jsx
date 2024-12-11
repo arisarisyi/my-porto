@@ -27,6 +27,7 @@ const Projects = () => {
                 width={250}
                 height={250}
                 className="mb-6 rounded"
+                loading="lazy"
               />
             </motion.div>
             <motion.div
