@@ -1,6 +1,7 @@
 import project1 from "../assets/projects/logistic.webp"
 import project2 from "../assets/projects/fuel.webp"
 import project4 from "../assets/projects/3care.webp"
+import project3 from "../assets/projects/teman-curhatmu.webp"
 import cSharp from "../assets/csharp.webp"
 
 export const HERO_CONTENT = `A versatile software developer with over 2 years of experience in both startups and the mining industry. Skilled in frontend and backend development, with a Bachelor's degree in Informatics.
@@ -67,6 +68,13 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
   {
+    title: "Teman Curhatmu",
+    image: project3,
+    description:
+      "Teman Curhatmu (https://teman-curhatku.alarisyi.web.id) leverages AI-powered chatbot technology, built on Google Gemini, to deliver personalized interactions for users. This project entailed designing a robust backend architecture using NestJS and MongoDB, implementing real-time communication via WebSockets, and ensuring seamless integration with the AI model. For demonstration purposes, you may access the platform using the following credentials: Username: alarisyi, Password: alarisyi.",
+    technologies: ["Angular", "NestJs", "WebSocket", "Mongo"],
+  },
+  {
     title: "Logistic Management",
     image: project1,
     description: `Logistic management is an application for inventory tracking of goods in the procurement division.`,
@@ -100,13 +108,6 @@ export const PROJECTS = [
     description: `3 care is a web that contains information about tri cards and receives complaints from its users. (Outsourcing in Tech Mahindra) https://online.tri.co.id/?src=he`,
     technologies: ["HTML", "CSS", "Angular"],
   },
-  // {
-  //   title: "Portfolio Website",
-  //   image: project3,
-  //   description:
-  //     "A personal portfolio website showcasing projects, skills, and contact information.",
-  //   technologies: ["HTML", "CSS", "React", "Tailwinds"],
-  // },
 ]
 
 export const CERTIFICATIONS = [
