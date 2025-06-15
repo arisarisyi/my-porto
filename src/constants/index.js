@@ -2,6 +2,7 @@ import project1 from "../assets/projects/logistic.webp"
 import project2 from "../assets/projects/fuel.webp"
 import project4 from "../assets/projects/3care.webp"
 import project3 from "../assets/projects/teman-curhatmu.webp"
+import project5 from "../assets/projects/al-muhsinin.webp"
 import cSharp from "../assets/csharp.webp"
 
 export const HERO_CONTENT = `A versatile software developer with over 2 years of experience in both startups and the mining industry. Skilled in frontend and backend development, with a Bachelor's degree in Informatics.
@@ -67,6 +68,13 @@ export const EXPERIENCES = [
 ]
 
 export const PROJECTS = [
+  {
+    title: "Al-Muhsinin Landing Page",
+    image: project5,
+    description:
+      "A responsive and interactive landing page designed for Pondok Pesantren Kreatif Al-Muhsinin. This project blends Islamic aesthetics with a vintage web style to represent a modern yet spiritually rooted educational institution. It features smooth scrolling, responsive layouts, hover animations, and a clean, elegant design Svelte. Indexed on Google and optimized for search engines (SEO-friendly) to ensure discoverability and better visibility in search results. https://al-muhsinin.com",
+    technologies: ["Svelte", "Typescript", "Vite"],
+  },
   {
     title: "Teman Curhatmu",
     image: project3,
