@@ -226,6 +226,7 @@ export const certifications: Certification[] = [
     id: "3",
     title: "ACE Multicloud Network Associate",
     issuer: "Aviatrix",
+    link: "https://www.credly.com/badges/a38ede93-52f6-4f79-ac6b-6e70a4a7ed2c/public_url",
   },
   {
     id: "4",
