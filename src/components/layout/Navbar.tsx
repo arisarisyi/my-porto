@@ -1,40 +1,40 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Container } from './Container';
-import { navigationItems } from '../../data/profile';
-import type { NavigationItem } from '../../types/profile';
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
+import { Container } from "./Container"
+import { navigationItems } from "../../data/profile"
+import type { NavigationItem } from "../../types/profile"
 
 interface NavbarProps {
-  activeSection: string;
+  activeSection: string
 }
 
 export function Navbar({ activeSection }: NavbarProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+      setIsScrolled(window.scrollY > 50)
+    }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const handleNavClick = (href: string) => {
-    setIsMenuOpen(false);
-    const element = document.querySelector(href);
+    setIsMenuOpen(false)
+    const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" })
     }
-  };
+  }
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-slate-950/90 backdrop-blur-md border-b border-slate-800'
-          : 'bg-transparent'
+          ? "bg-slate-950/90 backdrop-blur-md border-b border-slate-800"
+          : "bg-transparent"
       }`}
     >
       <Container>
@@ -42,10 +42,14 @@ export function Navbar({ activeSection }: NavbarProps) {
           {/* Logo/Name */}
           <a
             href="#home"
-            onClick={() => handleNavClick('#home')}
-            className="text-xl font-bold text-accent-400 hover:text-accent-300 transition-colors"
+            onClick={() => handleNavClick("#home")}
+            className="flex items-center hover:opacity-80 transition-opacity"
           >
-            IA
+            <img
+              src="/logo1.png"
+              alt="Imam Al Arisyi Logo"
+              className="h-8 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -55,13 +59,13 @@ export function Navbar({ activeSection }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
+                  e.preventDefault()
+                  handleNavClick(item.href)
                 }}
                 className={`text-sm font-medium transition-colors hover:text-accent-400 ${
                   activeSection === item.href.slice(1)
-                    ? 'text-accent-400'
-                    : 'text-slate-300'
+                    ? "text-accent-400"
+                    : "text-slate-300"
                 }`}
               >
                 {item.label}
@@ -91,13 +95,13 @@ export function Navbar({ activeSection }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
+                  e.preventDefault()
+                  handleNavClick(item.href)
                 }}
                 className={`block py-2 text-sm font-medium transition-colors hover:text-accent-400 ${
                   activeSection === item.href.slice(1)
-                    ? 'text-accent-400'
-                    : 'text-slate-300'
+                    ? "text-accent-400"
+                    : "text-slate-300"
                 }`}
               >
                 {item.label}
@@ -107,5 +111,5 @@ export function Navbar({ activeSection }: NavbarProps) {
         )}
       </Container>
     </nav>
-  );
+  )
 }
