@@ -54,7 +54,7 @@ export function LoadingScreen() {
         {Array.from({ length: 60 }).map((_, i) => (
           <div
             key={i}
-            className="absolute text-green-500 font-mono text-xs opacity-30"
+            className="absolute text-red-500 font-mono text-xs opacity-30"
             style={{
               left: `${Math.random() * 100}%`,
               top: -20,
@@ -75,7 +75,7 @@ export function LoadingScreen() {
 
       {/* Terminal Window */}
       <div className="relative z-10 w-full max-w-md mx-auto px-4">
-        <div className="bg-gray-900 rounded-lg border border-green-500/30 shadow-2xl overflow-hidden">
+        <div className="bg-gray-900 rounded-lg border border-red-500/30 shadow-2xl overflow-hidden">
           {/* Terminal Header */}
           <div className="bg-gray-800 px-4 py-2 flex items-center gap-2 border-b border-gray-700">
             <div className="flex gap-2">
@@ -84,14 +84,14 @@ export function LoadingScreen() {
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
             <span className="text-gray-400 text-sm font-mono ml-2">
-              portfolio@devsecops:~
+              pentest@redteam:~
             </span>
           </div>
 
           {/* Terminal Content */}
           <div className="p-6 bg-black/50">
             {/* ASCII Art Logo */}
-            <div className="text-green-400 font-mono mb-4 leading-none overflow-x-auto">
+            <div className="text-red-400 font-mono mb-4 leading-none overflow-x-auto">
               <div className="text-[2px] xs:text-[3px] sm:text-[4px] md:text-[5px] lg:text-[6px] xl:text-[7px] scale-75 xs:scale-90 sm:scale-100 transform origin-left">
                 <pre className="whitespace-pre">
                   {`
@@ -120,11 +120,11 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
 
             {/* Name with Gradient */}
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">
-              <span className="bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
                 Imam Al Arisyi
               </span>
             </h1>
-            <p className="text-cyan-400 font-mono text-center mb-6">
+            <p className="text-red-400 font-mono text-center mb-6">
               Backend & Platform Engineer / Penetration Tester
             </p>
 
@@ -133,7 +133,7 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
               {terminalLines.map((line, i) => (
                 <div
                   key={i}
-                  className="text-green-400 mb-1 opacity-0"
+                  className="text-red-400 mb-1 opacity-0"
                   style={{
                     animation: `type-in 0.3s ease-out ${i * 0.1}s forwards`,
                   }}
@@ -142,7 +142,7 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
                 </div>
               ))}
               {progress < 100 && (
-                <div className="text-green-400 animate-pulse">
+                <div className="text-red-400 animate-pulse">
                   {">"} {"█".repeat(Math.floor(progress / 5))}
                   <span className="animate-pulse">▓</span>
                   {"░".repeat(20 - Math.floor(progress / 5))}
@@ -152,17 +152,17 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
 
             {/* Progress Bar */}
             <div className="flex items-center justify-between mb-2">
-              <span className="text-green-400 font-mono text-xs flex items-center gap-1">
+              <span className="text-red-400 font-mono text-xs flex items-center gap-1">
                 <Terminal className="w-3 h-3" />
                 INITIALIZING
               </span>
-              <span className="text-green-400 font-mono text-xs">
+              <span className="text-red-400 font-mono text-xs">
                 {progress}%
               </span>
             </div>
             <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 transition-all duration-300 ease-out relative"
+                className="h-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 transition-all duration-300 ease-out relative"
                 style={{ width: `${progress}%` }}
               >
                 <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
@@ -171,7 +171,7 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
 
             {/* Loading Icon */}
             <div className="flex justify-center mt-4">
-              <Loader2 className="w-6 h-6 text-green-400 animate-spin" />
+              <Loader2 className="w-6 h-6 text-red-400 animate-spin" />
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ o888o   o888o o88o     o8888o o888o  o888o o888bood8P.
           {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
-              className="absolute text-cyan-500 font-mono text-xs opacity-20"
+              className="absolute text-orange-500 font-mono text-xs opacity-20"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,

@@ -1,8 +1,8 @@
-import { Container } from './Container';
-import { personalInfo } from '../../data/profile';
+import { Container } from "./Container"
+import { personalInfo } from "../../data/profile"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-slate-950 border-t border-slate-800 py-8">
@@ -11,11 +11,9 @@ export function Footer() {
           <p className="text-slate-400 text-sm">
             © {currentYear} {personalInfo.name}. All rights reserved.
           </p>
-          <p className="text-slate-400 text-sm">
-            Built with React + TypeScript
-          </p>
+          <p className="text-slate-400 text-sm"></p>
         </div>
       </Container>
     </footer>
-  );
+  )
 }
