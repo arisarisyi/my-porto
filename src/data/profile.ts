@@ -218,18 +218,24 @@ export const certifications: Certification[] = [
   },
   {
     id: "2",
+    title: "Certified Junior Web Penetration Tester (CJWPT)",
+    issuer: "Hack & Fix",
+    link: "https://academy.hackandfix.com/certificate-page/?user=23224&course=54294",
+  },
+  {
+    id: "3",
     title: "ICCA — INE Certified Cloud Associate",
     issuer: "INE",
     link: "https://certs.ine.com/f0feff03-8c42-473e-812b-78b98a4d86ad?record_view=true",
   },
   {
-    id: "3",
+    id: "4",
     title: "ACE Multicloud Network Associate",
     issuer: "Aviatrix",
     link: "https://www.credly.com/badges/a38ede93-52f6-4f79-ac6b-6e70a4a7ed2c/public_url",
   },
   {
-    id: "4",
+    id: "5",
     title: "ISO/IEC 27001:2022 Information Security Associate™",
     issuer: "Skillfront",
     link: "https://www.skillfront.com/Badges/05417632696799",
