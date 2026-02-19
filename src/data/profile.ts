@@ -223,6 +223,12 @@ export const certifications: Certification[] = [
     link: "https://academy.hackandfix.com/certificate-page/?user=23224&course=54294",
   },
   {
+    id: "6",
+    title: "Certified Web Red Team Analyst (Web-RTA)",
+    issuer: "Cyberwarfare",
+    link: "https://labs.cyberwarfare.live/credential/achievement/6995cd3cba8390c68e9d4fc5",
+  },
+  {
     id: "3",
     title: "ICCA — INE Certified Cloud Associate",
     issuer: "INE",
