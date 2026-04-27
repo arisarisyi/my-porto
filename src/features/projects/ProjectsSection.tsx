@@ -18,7 +18,7 @@ export function ProjectsSection() {
   // Get available categories based on current mode's projects
   const availableCategories = useMemo(() => {
     const categories = new Set(allProjects.map(p => p.category));
-    return ['All', ...Array.from(categories)] as typeof allCategories;
+    return ['All', ...Array.from(categories)] as Array<typeof allCategories[number]>;
   }, [allProjects]);
 
   const filteredProjects = selectedCategory === 'All'
