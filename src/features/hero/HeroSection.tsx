@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download } from 'lucide-react';
-import { personalInfo, socialLinks } from '../../data/profile';
+import { ArrowDown, Download, Code, Shield } from 'lucide-react';
+import { personalInfo, socialLinks, modeMetadata } from '../../data/profile';
+import { useMode } from '../../contexts/ModeContext';
 import { Button } from '../../components/ui/Button';
 import { IconLink } from '../../components/ui/IconLink';
 import { Section } from '../../components/layout/Section';
@@ -9,6 +10,8 @@ import { useScrollToSection } from '../../hooks/useScrollToSection';
 
 export function HeroSection() {
   const scrollToSection = useScrollToSection();
+  const { mode } = useMode();
+  const currentMode = modeMetadata[mode];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,9 +38,38 @@ export function HeroSection() {
 
   return (
     <Section id="home" className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Background Decorations */}
+      {/* Background Decorations - Mode-specific */}
       <div className="hero-decoration -top-20 -right-20" />
-      <div className="hero-decoration -bottom-20 -left-20" style={{ background: 'radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%)' }} />
+      <div
+        className="hero-decoration -bottom-20 -left-20"
+        style={{
+          background: `radial-gradient(circle, ${mode === 'SE' ? 'rgba(6, 182, 212' : 'rgba(239, 68, 68'}, 0.1) 0%, transparent 70%)`
+        }}
+      />
+
+      {/* Mode Indicator Badge */}
+      <div className="absolute top-24 right-8 hidden md:block">
+        <div
+          className={`flex items-center gap-2 px-4 py-2 rounded-full border ${
+            mode === 'SE'
+              ? 'bg-cyan-500/10 border-cyan-500/20'
+              : 'bg-red-500/10 border-red-500/20'
+          }`}
+        >
+          {mode === 'SE' ? (
+            <Code className="w-4 h-4 text-cyan-400" />
+          ) : (
+            <Shield className="w-4 h-4 text-red-400" />
+          )}
+          <span
+            className={`text-sm font-medium ${
+              mode === 'SE' ? 'text-cyan-400' : 'text-red-400'
+            }`}
+          >
+            {currentMode.title}
+          </span>
+        </div>
+      </div>
 
       <Container>
         <motion.div
@@ -102,12 +134,14 @@ export function HeroSection() {
                 {personalInfo.name}
               </motion.h1>
 
-              {/* Title */}
+              {/* Title - Mode-specific */}
               <motion.h2
                 variants={itemVariants}
-                className="text-xl sm:text-2xl lg:text-3xl text-accent-400 font-semibold mb-6"
+                className={`text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 ${
+                  mode === 'SE' ? 'text-cyan-400' : 'text-red-400'
+                }`}
               >
-                {personalInfo.title}
+                {currentMode.title}
               </motion.h2>
 
               {/* Location */}
@@ -124,28 +158,46 @@ export function HeroSection() {
                 />
               </motion.div>
 
-              {/* Summary */}
+              {/* Summary - Mode-specific */}
               <motion.p
                 variants={itemVariants}
                 className="text-lg text-slate-300 mb-12 max-w-3xl leading-relaxed"
               >
-                {personalInfo.summary}
+                {currentMode.heroSummary}
               </motion.p>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Mode-specific CV */}
               <motion.div
                 variants={itemVariants}
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
-                <Button
-                  variant="primary"
-                  size="lg"
-                  href={personalInfo.cvUrl || "/cv.pdf"}
-                  className="group"
-                >
-                  <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                  View Resume
-                </Button>
+                <div className="flex gap-4">
+                  {personalInfo.cvs
+                    ?.filter(cv => {
+                      // Show only relevant CV for current mode
+                      const isSEMode = mode === 'SE'
+                      const isSECV = cv.title.includes('Software Engineer')
+                      const isPentestCV = cv.title.includes('Penetration Tester')
+                      return isSEMode ? isSECV : isPentestCV
+                    })
+                    .map((cv) => (
+                      <Button
+                        key={cv.url}
+                        variant="primary"
+                        size="lg"
+                        href={cv.url}
+                        className={`group ${
+                          mode === 'SE'
+                            ? 'bg-cyan-600 hover:bg-cyan-700'
+                            : 'bg-red-600 hover:bg-red-700'
+                        }`}
+                        title={cv.description}
+                      >
+                        <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                        {cv.title}
+                      </Button>
+                    ))}
+                </div>
                 <Button
                   variant="secondary"
                   size="lg"

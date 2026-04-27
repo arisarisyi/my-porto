@@ -6,10 +6,14 @@ const cardVariants = cva(
   {
     variants: {
       variant: {
-        default: 'glass-card border-slate-800/50 hover:border-accent-600/50 hover:shadow-lg hover:shadow-accent-500/10',
-        elevated: 'glass-card border-slate-700/50 shadow-lg hover:shadow-xl hover:border-accent-600/30',
-        outlined: 'glass-card border-slate-700/50 hover:border-accent-600/50',
-        glass: 'glass-card border-slate-800/30 hover:border-accent-600/30 hover:shadow-lg hover:shadow-accent-500/5',
+        default: 'glass-card border-slate-800/50 hover:border-cyan-600/50 hover:shadow-lg hover:shadow-cyan-500/10',
+        'default-red': 'glass-card border-slate-800/50 hover:border-red-600/50 hover:shadow-lg hover:shadow-red-500/10',
+        elevated: 'glass-card border-slate-700/50 shadow-lg hover:shadow-xl hover:border-cyan-600/30',
+        'elevated-red': 'glass-card border-slate-700/50 shadow-lg hover:shadow-xl hover:border-red-600/30',
+        outlined: 'glass-card border-slate-700/50 hover:border-cyan-600/50',
+        'outlined-red': 'glass-card border-slate-700/50 hover:border-red-600/50',
+        glass: 'glass-card border-slate-800/30 hover:border-cyan-600/30 hover:shadow-lg hover:shadow-cyan-500/5',
+        'glass-red': 'glass-card border-slate-800/30 hover:border-red-600/30 hover:shadow-lg hover:shadow-red-500/5',
       },
       padding: {
         none: 'p-0',

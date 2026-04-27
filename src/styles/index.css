@@ -7,6 +7,8 @@
     --foreground-rgb: 214, 219, 220;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 15, 23, 42;
+    --scrollbar-thumb: 6 182 212; /* cyan-600 */
+    --scrollbar-thumb-hover: 8 145 178; /* cyan-700 */
   }
 
   body {
@@ -68,11 +70,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-accent-600 rounded-full;
+    background-color: rgb(var(--scrollbar-thumb));
+    @apply rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent-500;
+    background-color: rgb(var(--scrollbar-thumb-hover));
   }
 }
 

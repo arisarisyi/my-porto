@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { navigationItems } from '../data/profile';
 import { useScrollSpy } from '../hooks/useScrollSpy';
+import { useMode } from '../contexts/ModeContext';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { LoadingScreen } from '../components/effects/LoadingScreen';
+import { ModeSelection } from '../features/landing/ModeSelection';
 import { HeroSection } from '../features/hero/HeroSection';
 import { ExperienceSection } from '../features/experience/ExperienceSection';
 import { ProjectsSection } from '../features/projects/ProjectsSection';
@@ -14,6 +16,7 @@ import { ContactSection } from '../features/contact/ContactSection';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { isModeSelected } = useMode();
 
   // Get section IDs from navigation items
   const sectionIds = navigationItems.map(item => item.href.slice(1));
@@ -35,6 +38,11 @@ export function App() {
 
   if (isLoading) {
     return <LoadingScreen />;
+  }
+
+  // Show landing page if mode not selected
+  if (!isModeSelected) {
+    return <ModeSelection />;
   }
 
   return (

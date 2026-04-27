@@ -1,3 +1,20 @@
+export type PortfolioMode = 'SE' | 'PENTEST'
+
+export interface CV {
+  title: string
+  url: string
+  description: string
+}
+
+export interface ModeMetadata {
+  mode: PortfolioMode
+  title: string
+  tagline: string
+  accentColor: string
+  accentHover: string
+  heroSummary: string
+}
+
 export interface PersonalInfo {
   name: string
   title: string
@@ -10,6 +27,7 @@ export interface PersonalInfo {
   summary: string
   photo?: string
   cvUrl?: string
+  cvs?: CV[]
 }
 
 export interface Skill {
@@ -20,6 +38,7 @@ export interface Skill {
 export interface SkillCategory {
   category: string
   skills: Skill[]
+  modes?: PortfolioMode[]
 }
 
 export interface Experience {
@@ -29,6 +48,7 @@ export interface Experience {
   location?: string
   period: string
   highlights: string[]
+  modes?: PortfolioMode[]
 }
 
 export interface Project {
@@ -38,6 +58,7 @@ export interface Project {
   technologies: string[]
   category: "Security" | "Observability" | "Backend" | "Infrastructure"
   link?: string
+  modes?: PortfolioMode[]
 }
 
 export interface Certification {
@@ -47,6 +68,7 @@ export interface Certification {
   date?: string
   credentialId?: string
   link?: string
+  modes?: PortfolioMode[]
 }
 
 export interface Education {

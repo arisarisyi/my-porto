@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { personalInfo, socialLinks } from '../../data/profile';
+import { useMode } from '../../contexts/ModeContext';
 import { Section } from '../../components/layout/Section';
 import { Container } from '../../components/layout/Container';
 import { Card } from '../../components/ui/Card';
@@ -8,6 +9,8 @@ import { IconLink } from '../../components/ui/IconLink';
 import { Mail, Send, MapPin } from 'lucide-react';
 
 export function ContactSection() {
+  const { mode } = useMode();
+  const isPentest = mode === 'PENTEST';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,7 +58,7 @@ export function ContactSection() {
       <Container>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <Mail className="w-12 h-12 text-accent-400 mx-auto mb-4" />
+            <Mail className={`w-12 h-12 ${isPentest ? 'text-red-400' : 'text-cyan-400'} mx-auto mb-4`} />
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Get In Touch
             </h2>
@@ -67,7 +70,7 @@ export function ContactSection() {
           <div className="grid gap-8 md:grid-cols-2">
             {/* Contact Info */}
             <div className="space-y-4">
-              <Card>
+              <Card variant={isPentest ? 'elevated-red' : 'elevated'}>
                 <h3 className="text-lg font-semibold text-white mb-6">Contact Information</h3>
 
                 <div className="space-y-4">
@@ -75,14 +78,14 @@ export function ContactSection() {
                     href={`mailto:${personalInfo.email}`}
                     icon="mail"
                     label={personalInfo.email}
-                    className="text-slate-300 hover:text-accent-400"
+                    className={`text-slate-300 ${isPentest ? 'hover:text-red-400' : 'hover:text-cyan-400'}`}
                   />
 
                   <IconLink
                     href={`tel:${personalInfo.phone}`}
                     icon="phone"
                     label={personalInfo.phone}
-                    className="text-slate-300 hover:text-accent-400"
+                    className={`text-slate-300 ${isPentest ? 'hover:text-red-400' : 'hover:text-cyan-400'}`}
                   />
 
                   <div className="flex items-center gap-2 text-slate-300">
@@ -109,7 +112,7 @@ export function ContactSection() {
             </div>
 
             {/* Contact Form */}
-            <Card>
+            <Card variant={isPentest ? 'elevated-red' : 'elevated'}>
               <h3 className="text-lg font-semibold text-white mb-6">Send a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -124,7 +127,9 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors"
+                    className={`w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 ${
+                      isPentest ? 'focus:ring-red-500' : 'focus:ring-cyan-500'
+                    } focus:border-transparent transition-colors`}
                     placeholder="Your name"
                   />
                 </div>
@@ -140,7 +145,9 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors"
+                    className={`w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 ${
+                      isPentest ? 'focus:ring-red-500' : 'focus:ring-cyan-500'
+                    } focus:border-transparent transition-colors`}
                     placeholder="your@email.com"
                   />
                 </div>
@@ -156,7 +163,9 @@ export function ContactSection() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors resize-none"
+                    className={`w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 ${
+                      isPentest ? 'focus:ring-red-500' : 'focus:ring-cyan-500'
+                    } focus:border-transparent transition-colors resize-none`}
                     placeholder="Your message..."
                   />
                 </div>
@@ -166,7 +175,7 @@ export function ContactSection() {
                   variant="primary"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full"
+                  className={`w-full ${isPentest ? 'bg-red-600 hover:bg-red-700' : 'bg-cyan-600 hover:bg-cyan-700'}`}
                 >
                   {isSubmitting ? (
                     'Opening Email Client...'

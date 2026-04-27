@@ -1,10 +1,15 @@
-import { experiences } from '../../data/profile';
+import { useModeData } from '../../hooks/useModeData';
+import { useMode } from '../../contexts/ModeContext';
 import { Section } from '../../components/layout/Section';
 import { Container } from '../../components/layout/Container';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 
 export function ExperienceSection() {
+  const { experiences } = useModeData();
+  const { mode } = useMode();
+  const isPentest = mode === 'PENTEST';
+
   return (
     <Section id="experience">
       <Container>
@@ -30,18 +35,18 @@ export function ExperienceSection() {
                   }`}
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-accent-500 rounded-full border-4 border-slate-950 transform -translate-x-1/2" />
+                  <div className={`absolute left-4 md:left-1/2 w-4 h-4 ${isPentest ? 'bg-red-500' : 'bg-cyan-500'} rounded-full border-4 border-slate-950 transform -translate-x-1/2`} />
 
                   {/* Experience Card */}
                   <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <Card variant="elevated" className="group hover:scale-[1.02]">
+                    <Card variant={isPentest ? 'elevated-red' : 'elevated'} className="group hover:scale-[1.02]">
                       <div className="flex flex-col space-y-3">
                         {/* Header */}
                         <div>
-                          <h3 className="text-xl font-semibold text-white group-hover:text-accent-400 transition-colors">
+                          <h3 className={`text-xl font-semibold text-white group-hover:${isPentest ? 'text-red-400' : 'text-cyan-400'} transition-colors`}>
                             {exp.role}
                           </h3>
-                          <p className="text-accent-400 font-medium">
+                          <p className={`${isPentest ? 'text-red-400' : 'text-cyan-400'} font-medium`}>
                             {exp.company}
                           </p>
                         </div>
@@ -57,7 +62,7 @@ export function ExperienceSection() {
                         <ul className="space-y-2 text-slate-300">
                           {exp.highlights.map((highlight, idx) => (
                             <li key={idx} className="flex items-start gap-2">
-                              <span className="text-accent-500 mt-1.5 flex-shrink-0">
+                              <span className={`${isPentest ? 'text-red-500' : 'text-cyan-500'} mt-1.5 flex-shrink-0`}>
                                 •
                               </span>
                               <span className="text-sm leading-relaxed">

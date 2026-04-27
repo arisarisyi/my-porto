@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { projects } from '../../data/profile';
+import { useState, useMemo } from 'react';
+import { useModeData } from '../../hooks/useModeData';
+import { useMode } from '../../contexts/ModeContext';
 import { Section } from '../../components/layout/Section';
 import { Container } from '../../components/layout/Container';
 import { Card } from '../../components/ui/Card';
@@ -7,14 +8,22 @@ import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import type { Project } from '../../types/profile';
 
-const categories = ['All', 'Security', 'Observability', 'Backend', 'Infrastructure'] as const;
+const allCategories = ['All', 'Security', 'Observability', 'Backend', 'Infrastructure'] as const;
 
 export function ProjectsSection() {
-  const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>('All');
+  const { mode } = useMode();
+  const { projects: allProjects } = useModeData();
+  const [selectedCategory, setSelectedCategory] = useState<typeof allCategories[number]>('All');
+
+  // Get available categories based on current mode's projects
+  const availableCategories = useMemo(() => {
+    const categories = new Set(allProjects.map(p => p.category));
+    return ['All', ...Array.from(categories)] as typeof allCategories;
+  }, [allProjects]);
 
   const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
+    ? allProjects
+    : allProjects.filter(project => project.category === selectedCategory);
 
   return (
     <Section id="projects">
@@ -29,13 +38,19 @@ export function ProjectsSection() {
 
           {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((category) => (
+            {availableCategories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
-                className="min-w-[100px]"
+                className={`min-w-[100px] ${
+                  selectedCategory === category
+                    ? mode === 'SE'
+                      ? 'bg-cyan-600 hover:bg-cyan-700'
+                      : 'bg-red-600 hover:bg-red-700'
+                    : ''
+                }`}
               >
                 {category}
               </Button>
@@ -45,7 +60,7 @@ export function ProjectsSection() {
           {/* Projects Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} isPentest={mode === 'PENTEST'} />
             ))}
           </div>
 
@@ -64,18 +79,19 @@ export function ProjectsSection() {
 
 interface ProjectCardProps {
   project: Project;
+  isPentest: boolean;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, isPentest }: ProjectCardProps) {
   return (
-    <Card variant="elevated" className="group hover:scale-[1.02] h-full">
+    <Card variant={isPentest ? 'elevated-red' : 'elevated'} className="group hover:scale-[1.02] h-full">
       <div className="flex flex-col h-full">
         {/* Header */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-accent-400 transition-colors">
+          <h3 className={`text-xl font-semibold text-white mb-2 ${isPentest ? 'group-hover:text-red-400' : 'group-hover:text-cyan-400'} transition-colors`}>
             {project.title}
           </h3>
-          <Badge variant="secondary" size="sm">
+          <Badge variant={isPentest ? 'primary-red' : 'primary'} size="sm">
             {project.category}
           </Badge>
         </div>
@@ -100,7 +116,7 @@ function ProjectCard({ project }: ProjectCardProps) {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 font-medium text-sm transition-colors"
+            className={`inline-flex items-center gap-2 ${isPentest ? 'text-red-400 hover:text-red-300' : 'text-cyan-400 hover:text-cyan-300'} font-medium text-sm transition-colors`}
           >
             View Project
             <svg

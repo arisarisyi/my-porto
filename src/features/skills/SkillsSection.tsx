@@ -1,10 +1,15 @@
-import { skills } from '../../data/profile';
+import { useModeData } from '../../hooks/useModeData';
+import { useMode } from '../../contexts/ModeContext';
 import { Badge } from '../../components/ui/Badge';
 import { Card } from '../../components/ui/Card';
 import { Section } from '../../components/layout/Section';
 import { Container } from '../../components/layout/Container';
 
 export function SkillsSection() {
+  const { skills } = useModeData();
+  const { mode } = useMode();
+  const isPentest = mode === 'PENTEST';
+
   return (
     <Section id="skills">
       <Container>
@@ -20,18 +25,18 @@ export function SkillsSection() {
             {skills.map((category) => (
               <Card
                 key={category.category}
-                variant="glass"
+                variant={isPentest ? 'glass-red' : 'glass'}
                 padding="md"
                 className="group hover:scale-[1.02] relative z-10"
               >
-                <h3 className="text-lg font-semibold text-accent-400 mb-4">
+                <h3 className={`text-lg font-semibold ${isPentest ? 'text-red-400' : 'text-cyan-400'} mb-4`}>
                   {category.category}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <Badge
                       key={skill.name}
-                      variant="primary"
+                      variant={isPentest ? 'primary-red' : 'primary'}
                       size="sm"
                       className="hover:scale-105 transition-transform"
                     >
